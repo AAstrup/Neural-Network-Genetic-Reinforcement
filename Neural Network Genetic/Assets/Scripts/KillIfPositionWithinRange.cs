@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(ResetableGameObject))]
+[RequireComponent(typeof(DestroyGameObject))]
 public class KillIfPositionWithinRange : MonoBehaviour {
 
-    private ResetableGameObject nNResetable;
+    private DestroyGameObject nNResetable;
     private int m_Frame;
     public int _KillTickRate = 120;
     private Vector3 lastPost;
@@ -14,7 +14,7 @@ public class KillIfPositionWithinRange : MonoBehaviour {
 
     private void Start()
     {
-        nNResetable = GetComponent<ResetableGameObject>();
+        nNResetable = GetComponent<DestroyGameObject>();
         lastPost = transform.position;
         startPosition = transform.position;
     }

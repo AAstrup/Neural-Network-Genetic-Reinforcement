@@ -54,7 +54,7 @@ public class NeuralNetworkGeneticFactory : MonoBehaviour {
         {
             InitializeSpawn(nn);
         }
-        var resetableGameObject = spawn.GetComponent<ResetableGameObject>();
+        var resetableGameObject = spawn.GetComponent<DestroyGameObject>();
         if (resetableGameObject != null)
             resetableGameObject.OnResetEvent += m_Factory.SpawnSingle;
     }

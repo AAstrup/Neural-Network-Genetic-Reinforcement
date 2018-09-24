@@ -290,7 +290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f63836ad27014e43954cbd1f2e043ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Distance: 1
+  m_Distance: 7
   m_LayerMask:
     serializedVersion: 2
     m_Bits: 4294967039
@@ -327,7 +327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f63836ad27014e43954cbd1f2e043ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Distance: 1
+  m_Distance: 7
   m_LayerMask:
     serializedVersion: 2
     m_Bits: 4294967039
@@ -377,7 +377,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f63836ad27014e43954cbd1f2e043ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Distance: 1
+  m_Distance: 7
   m_LayerMask:
     serializedVersion: 2
     m_Bits: 4294967039
@@ -392,7 +392,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f63836ad27014e43954cbd1f2e043ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Distance: 1
+  m_Distance: 7
   m_LayerMask:
     serializedVersion: 2
     m_Bits: 4294967039
@@ -407,6 +407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f46dcb15e8ff54b4abf39f751ae747c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggered: 0
 --- !u!114 &114558527269844984
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -459,7 +460,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f63836ad27014e43954cbd1f2e043ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Distance: 1
+  m_Distance: 7
   m_LayerMask:
     serializedVersion: 2
     m_Bits: 4294967039

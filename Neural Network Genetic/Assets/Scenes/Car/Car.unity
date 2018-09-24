@@ -299,8 +299,8 @@ MonoBehaviour:
   IsLearning: 1
   ShowDebugPrint: 0
   topAmountToUse: 10
-  randomPercentage: 15
-  mutatePercentage: 50
+  randomPercentage: 0
+  mutatePercentage: 0
   m_MinimumFitnessCandidateDistinction: 10
 --- !u!1 &860301258
 GameObject:

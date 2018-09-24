@@ -5,10 +5,11 @@ using UnityEngine;
 /// <summary>
 /// Resets all components that implements INNResetable
 /// </summary>
-public class ResetableGameObject : MonoBehaviour {
+public class DestroyGameObject : MonoBehaviour {
     private INNResetable[] resetablesComponents;
     public delegate void ResetEvent();
     public ResetEvent OnResetEvent;
+    public bool triggered;
 
     void Awake () {
         resetablesComponents = GetComponentsInChildren<INNResetable>();
@@ -17,12 +18,17 @@ public class ResetableGameObject : MonoBehaviour {
 
     public void Reset()
     {
-        foreach (var item in resetablesComponents)
-        {
-            item.NNReset();
-        }
+        //foreach (var item in resetablesComponents)
+        //{
+        //    item.NNReset();
+        //}
+        //if (OnResetEvent != null)
+        //    OnResetEvent();
+        if (triggered)
+            return;
         if (OnResetEvent != null)
             OnResetEvent();
+        triggered = true;
         Destroy(gameObject);
     }
 }

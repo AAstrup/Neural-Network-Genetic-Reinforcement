@@ -9,7 +9,6 @@ public class RunComponent : NeuralNetworkNodeMonoBehaviour, INeuralNetworkOutput
     private float m_AccelerationMultiplier = 0.1f;
     [SerializeField]
     private float minimumSpeed = 0.4f;
-    [HideInInspector]
     public float m_MoveSpeed;
 
     public void Activation(float activationValue)
