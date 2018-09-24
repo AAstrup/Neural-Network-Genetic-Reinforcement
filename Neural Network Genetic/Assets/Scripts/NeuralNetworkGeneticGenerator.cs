@@ -12,7 +12,10 @@ public class NeuralNetworkGeneticGenerator : MonoBehaviour
 {
     [SerializeField]
     private List<Pair> bestThoughtProcesses;
-    public bool _IsLearning = true;
+    [SerializeField]
+    private bool IsLearning = true;
+    [SerializeField]
+    private bool ShowDebugPrint;
     private TextEditor textEditor = new TextEditor();
     private StringBuilder stringBuilder = new StringBuilder();
     public int topAmountToUse = 2;
@@ -48,7 +51,7 @@ public class NeuralNetworkGeneticGenerator : MonoBehaviour
 
     public void AgentComplete(NeuralNetworkFittnessSum nnFitness)
     {
-        if (_IsLearning)
+        if (IsLearning)
         {
             if (nnFitness.GetFitness() > bestThoughtProcesses[bestThoughtProcesses.Count - 1].fitness && !bestThoughtProcesses.Exists(x => m_MinimumFitnessCandidateDistinction > Mathf.Abs(x.fitness - nnFitness.GetFitness())))
             {
@@ -64,12 +67,18 @@ public class NeuralNetworkGeneticGenerator : MonoBehaviour
                 textEditor.SelectAll();
                 textEditor.Copy();
             }
-            Debug.Log("Final List");
+            Print("Final List");
             for (int i = 0; i < bestThoughtProcesses.Count; i++)
             {
-                Debug.Log("bestThoughtProcesses " + i + " with fitness of " + bestThoughtProcesses[i].fitness);
+                Print("bestThoughtProcesses " + i + " with fitness of " + bestThoughtProcesses[i].fitness);
             }
         }
+    }
+
+    private void Print(string v)
+    {
+        if (ShowDebugPrint)
+            Debug.Log(v);
     }
 
     public ThoughtProcess ProduceChild(int thoughtProcessSize, float processThoughtRandomnessRange)

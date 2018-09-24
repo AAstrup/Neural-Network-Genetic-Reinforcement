@@ -124,11 +124,11 @@ GameObject:
   - component: {fileID: 114174103991444648}
   - component: {fileID: 114943405059217438}
   - component: {fileID: 114558527269844984}
-  - component: {fileID: 50723545579186416}
   - component: {fileID: 61942265921464068}
   - component: {fileID: 114752969886567732}
   - component: {fileID: 114500332167469590}
   - component: {fileID: 114645313307891138}
+  - component: {fileID: 50146637314418074}
   m_Layer: 8
   m_Name: Car
   m_TagString: Untagged
@@ -233,7 +233,7 @@ Transform:
   m_Father: {fileID: 4412597851781724}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
---- !u!50 &50723545579186416
+--- !u!50 &50146637314418074
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 1
@@ -423,7 +423,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Fitness: 0
-  completed: 0
   nn: {fileID: 0}
 --- !u!114 &114752969886567732
 MonoBehaviour:

@@ -12,7 +12,9 @@ public class NeuralNetworkFittnessSum : MonoBehaviour, INNResetable {
     private float m_Fitness = 0f;
     public delegate void CompletedTest(NeuralNetworkFittnessSum nnFitness, float fitness);
     public CompletedTest completedTest;
-    public bool completed;
+    [HideInInspector]
+    private bool completed;
+    [HideInInspector]
     public NeuralNetwork nn;
 
     private void Awake()

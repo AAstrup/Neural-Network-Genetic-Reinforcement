@@ -60,18 +60,11 @@ public class NeuralNetwork : MonoBehaviour
     }
 
     void FixedUpdate () {
-        float highestActivation = -1f;
-        NeuralNetworkNodeMonoBehaviour node = null;
         foreach (var item in outputLayer)
         {
             var value = item.ComputeActivation();
-            if(highestActivation < value)
-            {
-                highestActivation = value;
-                node = item;
-            }
+            // Assumption cast can be made based on how we populate the outputLayer
+            (item as INeuralNetworkOutputNode).Activation(value);
         }
-        // Assumption cast can be made based on how we populate the outputLayer
-        (node as INeuralNetworkOutputNode).Activation(highestActivation);
 	}
 }

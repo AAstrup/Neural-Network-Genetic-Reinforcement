@@ -295,18 +295,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02afcb38edbcffa41bc1503ae158e567, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bestThoughtProcesses:
-  - process:
-      biasAndWeights: []
-      m_ThoughtAsString: 0.197044, 0.8676214, 0.9026921, -0.7853606, 0.4598245, 0.9981108,
-        0.9581268, -0.4576317, 0.4842255, -0.5131946, -0.6167743, -0.1489509, -0.6823907,
-        -0.5333924, 0.3017983, 0.8055282, 0.2726388, 0.5686605, 0.6428006, -0.9525571,
-        -0.7659926, 0.518255, -0.8703513, 0.9130354, -0.4372748, 0.25333, -0.455218,
-        -0.7350554, 0.8255455
-    fitness: 0
-  _IsLearning: 0
-  topAmountToUse: 1
-  randomPercentage: 0
+  bestThoughtProcesses: []
+  IsLearning: 1
+  ShowDebugPrint: 0
+  topAmountToUse: 10
+  randomPercentage: 15
   mutatePercentage: 50
   m_MinimumFitnessCandidateDistinction: 10
 --- !u!1 &860301258
