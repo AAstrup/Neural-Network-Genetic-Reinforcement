@@ -57,6 +57,9 @@ public class NeuralNetwork : MonoBehaviour
                 layer.ConnectTo(hiddenLayers[i], thoughtProcess.GetNext());
             }
         }
+
+        if (!thoughtProcess.HasNoNext())
+            throw new Exception("INputnodes, hidden nodes, or output node amount is wrong, was given m_InputNodes" + m_InputNodes + " m_HiddenLayers " + m_HiddenLayers + " m_OutputLayers " + m_OutputLayers);
     }
 
     void FixedUpdate () {

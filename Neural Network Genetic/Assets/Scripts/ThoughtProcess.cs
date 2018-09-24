@@ -85,6 +85,11 @@ public class ThoughtProcess
         return m_ThoughtAsString;
     }
 
+    internal bool HasNoNext()
+    {
+        return biasAndWeights.Length == index;
+    }
+
     internal void ResetIndex()
     {
         index = 0;
