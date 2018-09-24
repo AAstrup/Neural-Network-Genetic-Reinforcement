@@ -3,11 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Sums fitness of components with INNFitnessCalculator on this GameObject and childs
+/// </summary>
 [RequireComponent(typeof(NeuralNetwork), typeof(RunComponent))]
-public class NeuralNetworkFittnessDistanceEvaluator : MonoBehaviour, INNResetable {
+public class NeuralNetworkFittnessSum : MonoBehaviour, INNResetable {
     [SerializeField]
     private float m_Fitness = 0f;
-    public delegate void CompletedTest(NeuralNetworkFittnessDistanceEvaluator nnFitness, float fitness);
+    public delegate void CompletedTest(NeuralNetworkFittnessSum nnFitness, float fitness);
     public CompletedTest completedTest;
     public bool completed;
     public NeuralNetwork nn;

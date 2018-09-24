@@ -27,4 +27,11 @@ public class FactoryComponent : MonoBehaviour {
                 gameObjectSpawnedEvent(gmj);
         }
     }
+
+    internal void SpawnSingle()
+    {
+        var gmj = Instantiate(prefabToSpawn, transform.position, Quaternion.identity);
+        if (gameObjectSpawnedEvent != null)
+            gameObjectSpawnedEvent(gmj);
+    }
 }

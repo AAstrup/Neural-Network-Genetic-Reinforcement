@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(FactoryComponent))]
 public class NeuralNetworkAgentCollection : MonoBehaviour {
     [HideInInspector]
-    public delegate void AgentCompleteEvent(NeuralNetworkFittnessDistanceEvaluator nnFitness);
+    public delegate void AgentCompleteEvent(NeuralNetworkFittnessSum nnFitness);
     public AgentCompleteEvent agentCompleteEvent;
 
     void Awake () {
@@ -15,14 +15,14 @@ public class NeuralNetworkAgentCollection : MonoBehaviour {
 
     private void OnSpawn(GameObject spawn)
     {
-        var nn = spawn.GetComponent<NeuralNetworkFittnessDistanceEvaluator>();
+        var nn = spawn.GetComponent<NeuralNetworkFittnessSum>();
         if (nn != null)
         {
             nn.completedTest += AgentComplete;
         }
     }
 
-    private void AgentComplete(NeuralNetworkFittnessDistanceEvaluator nnFitness, float fitness)
+    private void AgentComplete(NeuralNetworkFittnessSum nnFitness, float fitness)
     {
         if (agentCompleteEvent != null)
         {

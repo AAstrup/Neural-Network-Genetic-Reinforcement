@@ -23,5 +23,6 @@ public class ResetableGameObject : MonoBehaviour {
         }
         if (OnResetEvent != null)
             OnResetEvent();
+        Destroy(gameObject);
     }
 }

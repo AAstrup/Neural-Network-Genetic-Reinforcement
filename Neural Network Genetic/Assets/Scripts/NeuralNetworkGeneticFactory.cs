@@ -41,7 +41,7 @@ public class NeuralNetworkGeneticFactory : MonoBehaviour {
             (m_OutputLayers * m_HiddenLayers); // Weights 
     }
 
-    private void AgentComplete(NeuralNetworkFittnessDistanceEvaluator nnFitness)
+    private void AgentComplete(NeuralNetworkFittnessSum nnFitness)
     {
         m_NeuralNetworkGeneticGenerator.AgentComplete(nnFitness);
         nnFitness.gameObject.transform.position = transform.position;
@@ -52,14 +52,14 @@ public class NeuralNetworkGeneticFactory : MonoBehaviour {
         var nn = spawn.GetComponent<NeuralNetwork>();
         if (nn != null)
         {
-            InitializeNewThought(nn);
+            InitializeSpawn(nn);
         }
         var resetableGameObject = spawn.GetComponent<ResetableGameObject>();
         if (resetableGameObject != null)
-            resetableGameObject.OnResetEvent += delegate () { InitializeNewThought(nn); };
+            resetableGameObject.OnResetEvent += m_Factory.SpawnSingle;
     }
 
-    private void InitializeNewThought(NeuralNetwork nn)
+    private void InitializeSpawn(NeuralNetwork nn)
     {
         var thoughtProcess = m_NeuralNetworkGeneticGenerator.ProduceChild(GetThoughtProcessSize(), m_ProcessThoughtRandomnessRange);
         nn.Initialize(m_InputNodes, m_HiddenLayers, m_OutputLayers, thoughtProcess);

@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(DistanceSensor))]
+[RequireComponent(typeof(FitnessDistanceSensor))]
 public class NNINDistanceEvaluator : MonoBehaviour, INeuralNetworkInputNode
 {
-    private DistanceSensor m_DistanceSensor;
+    private FitnessDistanceSensor m_DistanceSensor;
 
     private void Awake()
     {
-        m_DistanceSensor = GetComponent<DistanceSensor>();
+        m_DistanceSensor = GetComponent<FitnessDistanceSensor>();
     }
 
     public float ComputeActivation()

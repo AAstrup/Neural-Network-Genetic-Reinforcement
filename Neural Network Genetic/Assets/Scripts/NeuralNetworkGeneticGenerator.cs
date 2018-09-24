@@ -46,7 +46,7 @@ public class NeuralNetworkGeneticGenerator : MonoBehaviour
         }
     }
 
-    public void AgentComplete(NeuralNetworkFittnessDistanceEvaluator nnFitness)
+    public void AgentComplete(NeuralNetworkFittnessSum nnFitness)
     {
         if (_IsLearning)
         {
