@@ -5,29 +5,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Text;
 
-[RequireComponent(typeof(NeuralNetworkAgentCollection), typeof(FactoryComponent), typeof(NeuralNetworkGeneticGenerator))]
+[RequireComponent(typeof(FactoryComponent))]
 [RequireComponent(typeof(SpawnPointCollection))]
 public class NeuralNetworkGeneticFactory : MonoBehaviour {
 
+    [SerializeField]
     private NeuralNetworkAgentCollection collection;
+    [SerializeField]
     private NeuralNetworkGeneticGenerator m_NeuralNetworkGeneticGenerator;
     private FactoryComponent m_Factory;
     [SerializeField]
-    private int m_InputNodes = 5;
-    [SerializeField]
-    private int m_HiddenLayers = 3;
-    [SerializeField]
-    private int m_OutputLayers = 1;
-    [SerializeField]
+    private int m_HiddenLayers;
     private float m_ProcessThoughtRandomnessRange = 1f;
+    private int thoughtProcessSize;
 
     void Start()
     {
-        collection = GetComponent<NeuralNetworkAgentCollection>();
         collection.agentCompleteEvent += AgentComplete;
         m_Factory = GetComponent<FactoryComponent>();
         m_Factory.gameObjectSpawnedEvent += InitializeSpawn;
-        m_NeuralNetworkGeneticGenerator = GetComponent<NeuralNetworkGeneticGenerator>();
         m_NeuralNetworkGeneticGenerator.SetupForUse(GetThoughtProcessSize());
         m_NeuralNetworkGeneticGenerator.CreateInitialThoughtProcesses(GetThoughtProcessSize(), m_ProcessThoughtRandomnessRange);
         m_Factory.SpawnAll();
@@ -35,10 +31,16 @@ public class NeuralNetworkGeneticFactory : MonoBehaviour {
 
     public int GetThoughtProcessSize()
     {
-        return m_HiddenLayers + // Bias
-            (m_HiddenLayers * m_InputNodes) + // Weights 
-            m_OutputLayers + //Bias 
-            (m_OutputLayers * m_HiddenLayers); // Weights 
+        if (thoughtProcessSize == 0)
+        {
+            int output = m_Factory.prefabToSpawn.GetComponentsInChildren<INeuralNetworkOutputNode>().Count();
+            thoughtProcessSize = m_HiddenLayers + // Bias
+                (m_HiddenLayers * m_Factory.prefabToSpawn.GetComponentsInChildren<INeuralNetworkInputNode>().Count()) + // Weights 
+                output + //Bias 
+                (output * m_HiddenLayers); // Weights 
+        }
+
+        return thoughtProcessSize;
     }
 
     private void AgentComplete(NeuralNetworkFittnessSum nnFitness)
@@ -62,6 +64,6 @@ public class NeuralNetworkGeneticFactory : MonoBehaviour {
     private void InitializeSpawn(NeuralNetwork nn)
     {
         var thoughtProcess = m_NeuralNetworkGeneticGenerator.ProduceChild(GetThoughtProcessSize(), m_ProcessThoughtRandomnessRange);
-        nn.Initialize(m_InputNodes, m_HiddenLayers, m_OutputLayers, thoughtProcess);
+        nn.Initialize(m_HiddenLayers, thoughtProcess);
     }
 }

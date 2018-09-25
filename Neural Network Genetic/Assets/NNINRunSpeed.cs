@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(RunComponent))]
+[RequireComponent(typeof(RunComponentOutputNode))]
 public class NNINRunSpeed : MonoBehaviour, INeuralNetworkInputNode {
 
-    private RunComponent _RunComponent;
+    private RunComponentOutputNode _RunComponent;
 
     private void Awake()
     {
-        _RunComponent = GetComponent<RunComponent>();
+        _RunComponent = GetComponent<RunComponentOutputNode>();
     }
 
     public float ComputeActivation()

@@ -25,7 +25,7 @@ public class KillIfPositionWithinRange : MonoBehaviour {
             m_Frame = 0;
             if (Vector2.Distance(transform.position, lastPost) < killDistance)
             {
-                nNResetable.Reset();
+                nNResetable.Trigger();
                 transform.position = startPosition;
             }
         }

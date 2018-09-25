@@ -14,8 +14,7 @@ public class NeuralNetwork : MonoBehaviour
     private SteerComponent steerComponent;
     [SerializeField]
     private string thoughtProcessStringed;
-    [SerializeField]
-    private float m_Range = 1f;
+    public bool debugPrint;
 
     private void Awake()
     {
@@ -30,7 +29,7 @@ public class NeuralNetwork : MonoBehaviour
         }
     }
 
-    public void Initialize(int m_InputNodes, int m_HiddenLayers, int m_OutputLayers, ThoughtProcess thoughtProcess)
+    public void Initialize(int m_HiddenLayers, ThoughtProcess thoughtProcess)
     {
         this.thoughtProcess = thoughtProcess;
         thoughtProcessStringed = thoughtProcess.GetThoughtAsString();
@@ -59,15 +58,26 @@ public class NeuralNetwork : MonoBehaviour
         }
 
         if (!thoughtProcess.HasNoNext())
-            throw new Exception("INputnodes, hidden nodes, or output node amount is wrong, was given m_InputNodes" + m_InputNodes + " m_HiddenLayers " + m_HiddenLayers + " m_OutputLayers " + m_OutputLayers);
+            Debug.LogWarning("INputnodes, hidden nodes, or output node amount is wrong, is at " + thoughtProcess.GetCurrentIndex() + " but expected " + thoughtProcess.biasAndWeights.Length);
     }
 
     void FixedUpdate () {
+        float bestValue = Mathf.NegativeInfinity;
+        INeuralNetworkOutputNode node = null;
+        if(debugPrint)
+            Debug.Log("Start ------ ");
         foreach (var item in outputLayer)
         {
             var value = item.ComputeActivation();
             // Assumption cast can be made based on how we populate the outputLayer
-            (item as INeuralNetworkOutputNode).Activation(value);
+            if (value > bestValue)
+            {
+                node = item as INeuralNetworkOutputNode;
+                bestValue = value;
+            }
+            if(debugPrint)
+                Debug.Log("item " + item.GetType() + " returns value " + value);
         }
-	}
+        node.Activation(bestValue);
+    }
 }

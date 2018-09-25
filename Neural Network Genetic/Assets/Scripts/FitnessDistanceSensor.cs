@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FitnessDistanceSensor : MonoBehaviour, INNFitnessCalculator, INNResetable {
+public class FitnessDistanceSensor : MonoBehaviour, INNFitnessEvaluator, INNResetable {
     [SerializeField]
     private float m_Distance = 1f;
     private float distanceToWallAccumilated;

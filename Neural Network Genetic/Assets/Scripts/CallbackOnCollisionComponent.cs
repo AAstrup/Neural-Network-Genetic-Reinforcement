@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CallbackOnCollisionComponent : MonoBehaviour, INNResetable {
 
-    public delegate void OnCollisionEvent();
+    public delegate void OnCollisionEvent(Collision2D collision);
     public OnCollisionEvent onCollisionEvent;
     private bool m_Triggered;
 
@@ -13,7 +13,7 @@ public class CallbackOnCollisionComponent : MonoBehaviour, INNResetable {
         if (!m_Triggered)
         {
             m_Triggered = true;
-            onCollisionEvent();
+            onCollisionEvent(collision);
         }
     }
 

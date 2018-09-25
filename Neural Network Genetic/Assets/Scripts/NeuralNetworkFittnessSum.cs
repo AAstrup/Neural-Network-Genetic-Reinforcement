@@ -6,7 +6,7 @@ using UnityEngine;
 /// <summary>
 /// Sums fitness of components with INNFitnessCalculator on this GameObject and childs
 /// </summary>
-[RequireComponent(typeof(NeuralNetwork), typeof(RunComponent))]
+[RequireComponent(typeof(NeuralNetwork))]
 public class NeuralNetworkFittnessSum : MonoBehaviour, INNResetable {
     [SerializeField]
     private float m_Fitness = 0f;
@@ -32,19 +32,18 @@ public class NeuralNetworkFittnessSum : MonoBehaviour, INNResetable {
 
     public void NNReset()
     {
-        var fitnessComps = GetComponentsInChildren<INNFitnessCalculator>();
+        var fitnessComps = GetComponentsInChildren<INNFitnessEvaluator>();
         foreach (var item in fitnessComps)
         {
             m_Fitness += item.GetFitness();
         }
-        m_Fitness /= fitnessComps.Length;
         completed = true;
         if (completedTest != null)
         {
             completedTest(this, m_Fitness);
         }
 
-        m_Fitness = 0f;
-        completed = false;
+        //m_Fitness = 0f;
+        //completed = false;
     }
 }

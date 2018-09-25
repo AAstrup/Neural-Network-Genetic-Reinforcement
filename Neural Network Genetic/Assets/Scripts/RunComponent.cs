@@ -1,26 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class RunComponent : NeuralNetworkNodeMonoBehaviour, INeuralNetworkOutputNode, INNResetable {
+public class RunComponent : NeuralNetworkNodeMonoBehaviour, INNResetable
+{
     [SerializeField]
-    private float m_StartSpeed = 1f;
+    protected float m_StartSpeed = 1f;
     [SerializeField]
-    private float m_AccelerationMultiplier = 0.1f;
+    protected float m_AccelerationMultiplier = 0.1f;
     [SerializeField]
-    private float minimumSpeed = 0.4f;
+    protected float minimumSpeed = 0.4f;
     public float m_MoveSpeed;
 
-    public void Activation(float activationValue)
+    private void Awake()
     {
-        m_MoveSpeed += activationValue * m_AccelerationMultiplier;
-        if (m_MoveSpeed < minimumSpeed)
-            m_MoveSpeed = minimumSpeed;
+        NNReset();
     }
 
-    void FixedUpdate () {
+    void FixedUpdate()
+    {
         transform.position += transform.right * m_MoveSpeed;
-	}
+    }
 
     public void NNReset()
     {

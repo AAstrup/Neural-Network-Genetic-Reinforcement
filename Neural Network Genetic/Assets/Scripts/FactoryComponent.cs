@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,8 +9,9 @@ public class FactoryComponent : MonoBehaviour {
     public GameObjectSpawnedEvent gameObjectSpawnedEvent;
     public GameObject prefabToSpawn;
     private SpawnPointCollection m_SpawnPointCollection;
-
     public int spawnAmount;
+    [SerializeField]
+    private Vector3 m_SpawnArea;
 
     private void Start()
     {
@@ -22,16 +22,25 @@ public class FactoryComponent : MonoBehaviour {
     {
         for (int i = 0; i < spawnAmount; i++)
         {
-            var gmj = Instantiate(prefabToSpawn, transform.position, Quaternion.identity);
-            if (gameObjectSpawnedEvent != null)
-                gameObjectSpawnedEvent(gmj);
+            SpawnSingle();
         }
     }
 
     internal void SpawnSingle()
     {
-        var gmj = Instantiate(prefabToSpawn, transform.position, Quaternion.identity);
+        var gmj = Instantiate(prefabToSpawn, GetSpawnPosition(), Quaternion.identity);
         if (gameObjectSpawnedEvent != null)
             gameObjectSpawnedEvent(gmj);
+    }
+
+    private Vector3 GetSpawnPosition()
+    {
+        return transform.position + new Vector3(m_SpawnArea.x * Random.Range(-1f, 1f), m_SpawnArea.y * Random.Range(-1f, 1f), m_SpawnArea.z * Random.Range(-1f, 1f)) * 0.5f;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireCube(transform.position, m_SpawnArea);
     }
 }

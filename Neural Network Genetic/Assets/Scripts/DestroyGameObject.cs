@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,22 +11,27 @@ public class DestroyGameObject : MonoBehaviour {
     public delegate void ResetEvent();
     public ResetEvent OnResetEvent;
     public bool triggered;
+    public bool DestroyOnCollision;
 
     void Awake () {
         resetablesComponents = GetComponentsInChildren<INNResetable>();
-        GetComponent<CallbackOnCollisionComponent>().onCollisionEvent += Reset;
+        if(DestroyOnCollision)
+            GetComponent<CallbackOnCollisionComponent>().onCollisionEvent += Trigger;
     }
 
-    public void Reset()
+    public void Trigger(Collision2D collision)
     {
-        //foreach (var item in resetablesComponents)
-        //{
-        //    item.NNReset();
-        //}
-        //if (OnResetEvent != null)
-        //    OnResetEvent();
+        Trigger();
+    }
+
+    public void Trigger()
+    {
         if (triggered)
             return;
+        foreach (var item in resetablesComponents)
+        {
+            item.NNReset();
+        }
         if (OnResetEvent != null)
             OnResetEvent();
         triggered = true;

@@ -23,7 +23,7 @@ public class NeuralNetworkGeneticGenerator : MonoBehaviour
     public int mutatePercentage = 5;
     private int maxProcessSizeToTweak = 8;
     [SerializeField]
-    private float m_MinimumFitnessCandidateDistinction = 10f;
+    private float m_MinimumFitnessCandidateDistinction = 0f;
     private System.Random random;
 
     private void Awake()
